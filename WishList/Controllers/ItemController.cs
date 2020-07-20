@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
+using WishList.Models;
 
 namespace WishList.Controllers
 {
@@ -22,9 +23,9 @@ namespace WishList.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(Item item)
         {
-            return View("Create");
+            return View("Create", item);
         }
     }
 }
