@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
@@ -32,6 +33,15 @@ namespace WishList.Controllers
         public IActionResult Create(Item item)
         {
             _context.Items.Add(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var itemToDelete = _context.Items.FirstOrDefault(x => x.Id == id);
+            _context.Items.Remove(itemToDelete);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
